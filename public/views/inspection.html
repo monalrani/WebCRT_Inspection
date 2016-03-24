@@ -1,0 +1,257 @@
+<link rel="import" href="../bower_components/px-card/px-card-item.html"/>
+   <script src="http://www.x-non.com/json/jquery.json-2.4.min.js"> </script>
+   
+   <style>
+    #Iron-col2{
+     width:90%;
+    }
+    
+    #Inspect_table{
+     width:100%;    
+    }
+    
+    #sampTable thead{
+font-weight: bold;
+}
+    #saveInsp{
+    padding: 5px 10px;
+    margin-top: 15px;
+    background-color: #005cb9;
+    border: 1px solid #005cb9;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color:white;
+    }
+    
+    #CreateIsp{
+        padding-top: 12px;
+        }
+        
+        
+        
+        
+    </style>
+<px-card-item id="Iron-col2"></px-card-item>
+<input id="data" name="data" type="hidden" value="{{data}}">
+<input id="param" name="param" type="hidden" value="{{param}}">
+<px-card id="CreateIsp"><table id="sampTable">
+      <thead>
+        <tr>
+       		<!--  <td>Select</td> -->	
+            <td>Location</td>
+            <td>Area</td>
+            <td>Condition</td>
+            <td>UOM</td>
+            <td>Value</td>
+            
+          </tr>
+      </thead>
+      <tbody>
+       <!--   <tr>
+              <td><input type="text"/></td>
+              <td><input type="text"/></td>
+              <td><input type="text"/></td>
+              <td><input type="text"/></td>
+             <td><input type="text"/></td>
+             
+         </tr> -->
+          <tr id="summaryRow">
+ <!--  <td><input id="checkBox1" type="checkbox" onclick="getRow(this)" /></td> -->
+    <td ALIGN="center">
+       <select id="loc"></select>
+    </td>        
+              <td ALIGN="center">
+       <select id="area"></select>
+    </td>  
+              <td ALIGN="center">
+      <select id="condition"></select>
+    </td>  
+              <td><input id="uom" type="text" /></td>
+              <td><input type="text" id="value"  /></td>
+             
+         </tr>
+      </tbody>
+    </table>
+   
+<paper-button id="saveInsp" class="saveInsp" onclick="saveTblData();" raised>Save</paper-button>
+</px-card>
+<script>
+$('#CreateIsp').hide();
+$('#msgArea').hide();
+$('#errArea').hide();
+/* $('#irow').click(function(){
+    if($('#row').val()){
+        $('#mtable tbody').append($("#mtable tbody tr:last").clone());
+        $('#mtable tbody tr:last :checkbox').attr('checked',false);
+        $('#mtable tbody tr:last td:first').html($('#row').val());
+    }else{alert('Enter Text');}
+}); */
+
+$('.clickme').each(function() {
+    $(this).show(0).on('click', function(e) {
+        // This is only needed if your using an anchor to target the "box" elements
+        e.preventDefault();
+		var jsonData = JSON.parse(decodeURIComponent(document.getElementById("data").value));
+		var locationList = JSON.stringify(jsonData.locationList);
+		 //get a reference to the select element
+	    var $select = $('#loc');
+	 
+	     //clear the current content of the select
+	      $select.html('');
+	 
+	      //iterate over the data and append a select option
+	      for(var i=0;i<jsonData.locationList.length;i++)
+	      {
+	    	  var data = jsonData.locationList[i];
+	    	  if(data.location != null){
+		          var option=$('<option></option>').text(data.location);
+	    	  }
+	          $select.append(option);
+	      }
+	      
+	      
+	      var $select = $('#area');
+	 	 
+		     //clear the current content of the select
+		      $select.html('');
+		 
+		      //iterate over the data and append a select option
+		      for(var i=0;i<jsonData.areaList.length;i++)
+		      {
+		    	  var data = jsonData.areaList[i];
+		    	  if(data.area != null){
+			          var option=$('<option></option>').text(data.area);
+		    	  }
+		          $select.append(option);
+		      }
+		      
+		      
+		      var $select = $('#condition');
+		 	 
+			     //clear the current content of the select
+			      $select.html('');
+			 
+			      //iterate over the data and append a select option
+			      for(var i=0;i<jsonData.conditionList.length;i++)
+			      {
+			    	  var data = jsonData.conditionList[i];
+			    	  if(data.condition != null){
+				          var option=$('<option></option>').text(data.condition);
+			    	  }
+			          $select.append(option);
+			      }
+			      
+	      
+        // Find the next "box" element in the DOM
+        $('#CreateIsp').show();
+        $('#Inspect_table').hide();
+        $('#Create').hide();
+    });
+});
+
+$('.saveInsp').each(function() {
+    $(this).show(0).on('click', function(e) {
+        // This is only needed if your using an anchor to target the "box" elements
+        e.preventDefault();
+/*         
+        // Find the next "box" element in the DOM
+        $('#Inspect_table').show();
+        $('#Create').show();
+        $('#CreateIsp').hide(); */
+        
+    });
+});
+
+
+/* function addTableRow(jQtable){
+    jQtable.each(function(){
+    	debugger;
+        var $table = $(this);
+        // Number of td's in the last table row
+        var n = $('tr:last td', this).length;
+        var $tds = $('<tr>'); */
+
+        	/* if(i< 3){
+        		$tds.append('<td><input type="checkbox"/></td>');
+        		$tds.append('<td ALIGN="center"><select id="loc"></select></td>');
+        	}else */ 
+        	/* 	$tds.append('<td><input type="checkbox"/></td>');
+        		$tds.append('<td ALIGN="center"><select id="loc"></select></td>');
+        		$tds.append('<td ALIGN="center"><select id="area"></select></td>');
+        		$tds.append('<td ALIGN="center"><select id="condition"></select></td>');
+        	   $tds.append('<td><input type="text" class="tb-input" /></td>');
+        	   $tds.append('<td><input type="text" class="tb-input" /></td>');
+
+       if($('tbody', this).length > 1){
+           // $('tbody', this).append(tds);
+           $('tr:last',this).before($tds);
+        }else {
+            $(this).append($tds);
+        }
+    });
+}
+window.addTableRow = addTableRow; */
+
+function saveTblData(){
+	var TableData;
+	TableData = $.toJSON(storeTblValues());
+	
+		$.ajax({
+			 headers: { 
+			        'Content-Type': 'application/json' 
+			    },
+		    type: "POST",
+		    url: "http://webcrt-poc.run.aws-usw02-pr.ice.predix.io/save",
+		    data: TableData,
+		    dataType: 'json',
+		    success: function(msg){
+		    	debugger;
+		    	 var message = msg.message;
+			    	 var inspect_Refresh = document.getElementById("Inspect_table");
+			    	    $('#Inspect_table').show();
+		            $('#Create').show();
+		            $('#CreateIsp').hide();
+		    	  $('#msgArea').show();
+		    	 console.log("success:" + message);
+		    },
+		    error: function(msg){
+		    	 var message = msg.message;
+		    	  $('#errArea').show();
+		    	 console.log("error:" + message);
+		    }
+		 });
+	 
+	 function storeTblValues()
+	 {
+	     var TableData = new Array();
+	 	var e = document.getElementById("loc");
+	 	var location = e.options[e.selectedIndex].text;
+	 	var e1 = document.getElementById("area");
+	 	var area = e1.options[e1.selectedIndex].text;
+	 	var e2 = document.getElementById("condition");
+	 	var condition = e2.options[e2.selectedIndex].text;
+	 	var uom = document.getElementById("uom").value;
+	 	var value = document.getElementById("value").value;
+		var param1 = document.getElementById("param").value;
+
+	     $('#sampTable tr').each(function(row, tr){
+	         TableData[row]={
+	        	"jobSeqId": param1,
+	             "location" : location,
+	             "area" :area, 
+	             "condition" : condition, 
+	             "uom" : uom, 
+	             "value" : value
+	         }    
+	     }); 
+	     return TableData;
+	 }
+
+}
+
+</script>
+
+  
+   

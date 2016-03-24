@@ -1,0 +1,42 @@
+/* IMPORT STYLES */
+@import url("mediarResponsive.css");
+
+
+.wAuto { width: auto !important; }
+.txt-align-center { text-align: center; }
+
+.pr0 { padding-right: 0 !important; }
+
+
+px-app-nav.px-app-nav-0 {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.px-app-nav-0 a.selected.px-app-nav, .px-app-nav-0 a.selected.px-app-nav:hover {
+    background-color: rgba(8, 110, 135, 0.9);
+}
+
+.selecr-s2 {
+     	position: absolute;
+		z-index: 222222;
+		padding: 5px 4px;
+		background: rgba(204, 204, 204, 1);
+   }
+#itemSelect > div {
+      	height: 180px;
+      	overflow-y: scroll;
+      	overflow-x: hidden;
+      }
+
+.selecr-s1 {
+         	position: relative;
+			top: 0;
+			left: 0;
+        }
+
+
+
+
+px-app-nav[nav-expanded], px-app-nav[nav-contracting] {
+    z-index: 555555;
+}

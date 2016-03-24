@@ -1,0 +1,76 @@
+/************************************************ 
+ios devices viewport breakpoints  
+
+
+/************* ios devices viewport breakpoints  ***************/
+/* background-image landscape & portrait for iPhone 4 to 6 plus  */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 736px) 
+  and (orientation:portrait) {
+    /* .landing-bg {
+        background: url(../images/Final_Image.jpg) no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+    } */
+}
+
+
+/************* bootstarap viewport breakpoints  ***************/
+
+@media all and (min-width: 768px) and (max-width: 991px) { /* STYLES GO HERE */}
+@media all and (min-width: 992px) and (max-width: 1199px) { /* STYLES GO HERE */}
+
+/* Extra small devices - Phones */
+@media screen and (max-width: 767px) { /* STYLES GO HERE */}
+
+/* Small devices - Tablets */
+@media (min-width: 768px) { 
+	/* .w643 { width: 643px; } */
+	.width-s1 { 
+		width: 643px; 
+	}
+	.w650 { width: 650px; }
+	.w653 { width: 653px; }
+	
+	.customscroll-s1 {
+   		overflow-x: scroll;
+    	margin-left: -20px;
+	}
+	
+	.selecr-s1 { width: 289px; }
+	.selecr-s2 { width: 241px; }
+	#itemSelect > div { width: 239px !important;}
+}
+
+/* Medium devices - Desktops */
+@media (min-width: 1024px) { 
+/* 	.w643 { width: 900px; } */
+	.width-s1 { 
+		width: 100%; 
+		padding-right: 0;
+	}
+	
+	.customscroll-s1 {
+		overflow-x: scroll;
+	}
+	
+	.selecr-s1 { width: 334px; }
+	.selecr-s2 { width: 286px; }
+	#itemSelect > div { width: 284px !important;}
+}
+
+/* Large devices - Desktops */
+@media (min-width: 1200px) { 
+	.w643 { width: auto; }
+	.width-s1 { 
+		width: auto; 
+	}
+	
+	.selecr-s1 { width: 488px; }
+	.selecr-s2 { width: 440px; }
+	#itemSelect > div { width: 438px !important;}
+}
+
+
