@@ -31,6 +31,7 @@ ios devices viewport breakpoints
 	.width-s1 { 
 		width: 643px; 
 	}
+	.width-s2 { width: 603px; }
 	.w650 { width: 650px; }
 	.w653 { width: 653px; }
 	
@@ -39,7 +40,7 @@ ios devices viewport breakpoints
     	margin-left: -20px;
 	}
 	
-	.selecr-s1 { width: 289px; }
+	.selecr-s1 { width: 249px; }
 	.selecr-s2 { width: 241px; }
 	#itemSelect > div { width: 239px !important;}
 }
@@ -51,12 +52,13 @@ ios devices viewport breakpoints
 		width: 100%; 
 		padding-right: 0;
 	}
+	.width-s2 { width: 690px; }
 	
 	.customscroll-s1 {
 		overflow-x: scroll;
 	}
 	
-	.selecr-s1 { width: 334px; }
+	.selecr-s1 { width: 294px; }
 	.selecr-s2 { width: 286px; }
 	#itemSelect > div { width: 284px !important;}
 }
@@ -67,8 +69,13 @@ ios devices viewport breakpoints
 	.width-s1 { 
 		width: auto; 
 	}
+	.width-s2 { width: auto; }
 	
-	.selecr-s1 { width: 488px; }
+	.custom-scroll-s1 {
+	    overflow-x: auto !important;
+	}
+	
+	.selecr-s1 { width: 448px; }
 	.selecr-s2 { width: 440px; }
 	#itemSelect > div { width: 438px !important;}
 }

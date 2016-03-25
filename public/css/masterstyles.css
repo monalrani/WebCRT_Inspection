@@ -40,3 +40,47 @@ px-app-nav.px-app-nav-0 {
 px-app-nav[nav-expanded], px-app-nav[nav-contracting] {
     z-index: 555555;
 }
+
+
+.custom-btn-s1 {
+	padding: 5px 10px;
+    background-color: #005cb9;
+    border: 1px solid #005cb9;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: normal !important;
+    color: white;
+    margin: 0:
+}
+
+.custom-table-s1 {
+	background: #d1d0d8;
+}
+.custom-table-s1 td {
+	padding: 5px;
+	border: 1px solid #b1b1bc;
+}
+.custom-element-s1 {
+	height: 30px;
+}
+.custom-element-s2 {
+	height: 30px;
+}
+
+.custom-scroll-s1 {
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.px-dropdown--content.px-dropdown-content {
+	width: 100% !important;
+}
+
+.gif-spinner {
+	position: absolute;
+    top: 20%;
+    left: 50%;
+}
+

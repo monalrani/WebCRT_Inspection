@@ -34,6 +34,8 @@ require.config({
         'px-datasource': '../bower_components/px-datasource/dist/px-datasource.min',
 
         'ng-bind-polymer': '../bower_components/ng-bind-polymer/ng-bind-polymer',
+        'masterstyles': '../css/masterstyles',
+        'mediarResponsive': '../css/mediarResponsive',
 
         // Named References
         config: './config',

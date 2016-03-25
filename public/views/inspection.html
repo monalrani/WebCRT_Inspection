@@ -2,10 +2,10 @@
    <script src="http://www.x-non.com/json/jquery.json-2.4.min.js"> </script>
    
    <style>
-    #Iron-col2{
+    /* #Iron-col2{
      width:90%;
     }
-    
+ */    
     #Inspect_table{
      width:100%;    
     }
@@ -33,10 +33,15 @@ font-weight: bold;
         
         
     </style>
-<px-card-item id="Iron-col2"></px-card-item>
+<px-card-item id="Iron-col2" class="pull-left" style="width: 100%;"></px-card-item>
+<img src="../images/spinner.gif" id="spinner" class="gif-spinner" >
 <input id="data" name="data" type="hidden" value="{{data}}">
 <input id="param" name="param" type="hidden" value="{{param}}">
-<px-card id="CreateIsp"><table id="sampTable">
+
+<px-card id="CreateIsp" class="pull-left" style="width: 100%;min-height: 431px;">
+
+	<div class="custom-scroll-s1 width-s2">
+	<table id="sampTable">
       <thead>
         <tr>
        		<!--  <td>Select</td> -->	
@@ -57,23 +62,24 @@ font-weight: bold;
              <td><input type="text"/></td>
              
          </tr> -->
-          <tr id="summaryRow">
+          <tr id="summaryRow" class="custom-table-s1">
  <!--  <td><input id="checkBox1" type="checkbox" onclick="getRow(this)" /></td> -->
     <td ALIGN="center">
-       <select id="loc"></select>
+       <select id="loc" class="custom-element-s1"></select>
     </td>        
               <td ALIGN="center">
-       <select id="area"></select>
+       <select id="area" class="custom-element-s1"></select>
     </td>  
               <td ALIGN="center">
-      <select id="condition"></select>
+      <select id="condition" class="custom-element-s1"></select>
     </td>  
-              <td><input id="uom" type="text" /></td>
-              <td><input type="text" id="value"  /></td>
+              <td><input id="uom" type="text" class="custom-element-s2" /></td>
+              <td><input type="text" id="value" class="custom-element-s2"  /></td>
              
          </tr>
       </tbody>
     </table>
+   </div>
    
 <paper-button id="saveInsp" class="saveInsp" onclick="saveTblData();" raised>Save</paper-button>
 </px-card>
@@ -195,6 +201,7 @@ $('.saveInsp').each(function() {
 window.addTableRow = addTableRow; */
 
 function saveTblData(){
+	document.getElementById("spinner").style.display="block";
 	var TableData;
 	TableData = $.toJSON(storeTblValues());
 	
@@ -207,9 +214,9 @@ function saveTblData(){
 		    data: TableData,
 		    dataType: 'json',
 		    success: function(msg){
-		    	debugger;
 		    	 var message = msg.message;
 			    	 var inspect_Refresh = document.getElementById("Inspect_table");
+			    	 document.getElementById("spinner").style.display="none";
 			    	    $('#Inspect_table').show();
 		            $('#Create').show();
 		            $('#CreateIsp').hide();
