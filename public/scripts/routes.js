@@ -39,10 +39,6 @@ define(['angular', 'angular-ui-router'], function(angular) {
                 url: '/inspection',
                 templateUrl: 'views/inspection.html'
             });
-            /*.state('blanksubpage', {
-                url: '/blanksubpage',
-                templateUrl: 'views/blank-sub-page.html'
-            });*/
 
 
         $urlRouterProvider.otherwise(function ($injector) {

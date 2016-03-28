@@ -1,4 +1,4 @@
-<link rel="import" href="../bower_components/px-card/px-card-item.html"/>
+<link rel="import" href="px-card-item.html"/>
    <script src="http://www.x-non.com/json/jquery.json-2.4.min.js"> </script>
    
    <style>
@@ -28,11 +28,10 @@ font-weight: bold;
     #CreateIsp{
         padding-top: 12px;
         }
-        
-        
-        
-        
+ 
     </style>
+    
+    
 <px-card-item id="Iron-col2" class="pull-left" style="width: 100%;"></px-card-item>
 <img src="../images/spinner.gif" id="spinner" class="gif-spinner" >
 <input id="data" name="data" type="hidden" value="{{data}}">
@@ -44,7 +43,6 @@ font-weight: bold;
 	<table id="sampTable">
       <thead>
         <tr>
-       		<!--  <td>Select</td> -->	
             <td>Location</td>
             <td>Area</td>
             <td>Condition</td>
@@ -54,16 +52,8 @@ font-weight: bold;
           </tr>
       </thead>
       <tbody>
-       <!--   <tr>
-              <td><input type="text"/></td>
-              <td><input type="text"/></td>
-              <td><input type="text"/></td>
-              <td><input type="text"/></td>
-             <td><input type="text"/></td>
-             
-         </tr> -->
-          <tr id="summaryRow" class="custom-table-s1">
- <!--  <td><input id="checkBox1" type="checkbox" onclick="getRow(this)" /></td> -->
+
+     <tr id="summaryRow" class="custom-table-s1">
     <td ALIGN="center">
        <select id="loc" class="custom-element-s1"></select>
     </td>        
@@ -87,13 +77,6 @@ font-weight: bold;
 $('#CreateIsp').hide();
 $('#msgArea').hide();
 $('#errArea').hide();
-/* $('#irow').click(function(){
-    if($('#row').val()){
-        $('#mtable tbody').append($("#mtable tbody tr:last").clone());
-        $('#mtable tbody tr:last :checkbox').attr('checked',false);
-        $('#mtable tbody tr:last td:first').html($('#row').val());
-    }else{alert('Enter Text');}
-}); */
 
 $('.clickme').each(function() {
     $(this).show(0).on('click', function(e) {
@@ -116,7 +99,6 @@ $('.clickme').each(function() {
 	    	  }
 	          $select.append(option);
 	      }
-	      
 	      
 	      var $select = $('#area');
 	 	 
@@ -161,12 +143,6 @@ $('.saveInsp').each(function() {
     $(this).show(0).on('click', function(e) {
         // This is only needed if your using an anchor to target the "box" elements
         e.preventDefault();
-/*         
-        // Find the next "box" element in the DOM
-        $('#Inspect_table').show();
-        $('#Create').show();
-        $('#CreateIsp').hide(); */
-        
     });
 });
 
@@ -217,22 +193,20 @@ function saveTblData(){
 		    	 var message = msg.message;
 			    	 var inspect_Refresh = document.getElementById("Inspect_table");
 			    	 document.getElementById("spinner").style.display="none";
-			    	    $('#Inspect_table').show();
-		            $('#Create').show();
-		            $('#CreateIsp').hide();
-		    	  $('#msgArea').show();
-		    	 console.log("success:" + message);
+				     $('#Inspect_table').show();
+			         $('#Create').show();
+			         $('#CreateIsp').hide();
+			    	 $('#msgArea').show();
 		    },
 		    error: function(msg){
 		    	 var message = msg.message;
 		    	  $('#errArea').show();
-		    	 console.log("error:" + message);
 		    }
 		 });
 	 
 	 function storeTblValues()
 	 {
-	     var TableData = new Array();
+	    var TableData = new Array();
 	 	var e = document.getElementById("loc");
 	 	var location = e.options[e.selectedIndex].text;
 	 	var e1 = document.getElementById("area");

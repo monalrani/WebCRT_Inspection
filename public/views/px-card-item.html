@@ -1,0 +1,324 @@
+
+<link rel="import" href="../bower_components/px-card/px-card-header.html"/>
+<link rel="import" href="../bower_components/px-card/px-card.html"/>
+<link rel="import" href="../bower_components/px-dropdown/px-dropdown.html"/>
+
+  <style>
+      .heading {
+        padding: 5px 15px;
+        margin-top: 20px;
+        background-color:  #005cb9;
+        border: 1px solid #005cb9;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        width: 100%;
+        text-align: left;
+        color:white;
+      }
+
+      .content {
+        padding: 15px;
+        border: 1px solid #005cb9;
+        border-top: none;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+       @apply(--layout-flex);
+ +        @apply(--layout-flex-auto);
+          @apply(--layout-relative);
+        
+      }
+
+   paper-dropdown-menu.custom {
+    --paper-input-container-label: {
+      color: white;
+      background-color: var(--paper-pink-500)!important;
+      font-style: italic;
+      text-align: center;
+      font-weight: bold;
+    };
+    --paper-input-container-input: {
+      color: var(--paper-indigo-500);
+      font-style: normal;
+      font-family: serif;
+      text-transform: uppercase;
+    }
+    /* no underline */
+    --paper-input-container-underline: {
+      display: none;
+    };
+  }
+  
+    
+        .button {
+padding: 5px 10px;
+    margin-top: 15px;
+    background-color: #005cb9;
+    border: 1px solid #005cb9;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+        width: 10%;
+        text-align: center;
+        color:white;
+        margin: 2px -298px 0 348px;
+      }
+      
+      #button1{
+      height: 47px;
+    margin-top: -5px;
+        padding-top: 39px;
+      
+      }
+      
+      #AddInspBtn{
+         padding: 5px 10px;
+    margin-top: 15px;
+    background-color: #005cb9;
+    border: 1px solid #005cb9;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    color:white;
+      }
+      
+
+/* loder style 2 */
+@keyframes spinner {
+    to {transform: rotate(360deg);}
+}
+ 
+@-webkit-keyframes spinner {
+    to {-webkit-transform: rotate(360deg);}
+}
+ 
+.spinner {
+    min-width: 24px;
+    min-height: 24px;
+    background: #FFF;
+}
+ 
+.spinner:before {
+    content: 'Loading…';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin-top: -10px;
+    margin-left: -10px;
+}
+ 
+.spinner:not(:required):before {
+    content: '';
+    border-radius: 50%;
+    border: 2px solid #f6f;
+    border-top-color: #0e0;
+    border-right-color: #0dd;
+    border-bottom-color: #f90;
+    animation: spinner .6s linear infinite;
+    -webkit-animation: spinner .6s linear infinite;
+}
+
+	}
+
+    </style>
+
+<dom-module id="px-card-item">
+     <template is="dom-bind">
+     <form id="inspection1">
+    <px-card id="MainShop">
+	<div class="pull-left" style="min-height: 100px;">
+	<div id="Collapse3" class="selecr-s1 pull-left" style="margin-right: 40px; border-bottom-width:0px; padding-bottom: 8px;">
+		    <button class="heading">Item</button>
+		
+		   <div class="selecr-s2">
+		   <px-dropdown>
+		  <px-dropdown-text class="px-dropdown-text">Select Item</px-dropdown-text>
+		  <px-dropdown-chevron class="px-dropdown-chevron"></px-dropdown-chevron>
+		  <px-dropdown-content id="itemSelect" class="px-dropdown-content" extend-dropdown="true" 
+		  extend-dropdown-by="15" max-cont-character-width="10" items='{{json2}}'>
+		  </px-dropdown-content>
+		</px-dropdown>
+		  </div>
+  	</div>
+  
+	  <div id="Collapse4" class="selecr-s1 pull-left" style="border-bottom-width: 0px; padding-bottom: 8px; ">
+	    <button class="heading" >Sub Component</button>
+	       <div class="selecr-s2">
+		      <px-dropdown>
+		  		<px-dropdown-text class="px-dropdown-text">Select Sub Component</px-dropdown-text>
+		  			<px-dropdown-chevron class="px-dropdown-chevron"></px-dropdown-chevron>
+		  				<px-dropdown-content id="itemSelect2" class="px-dropdown-content" extend-dropdown="true" extend-dropdown-by="15" max-cont-character-width="10" items='{{json3}}'>
+		  				</px-dropdown-content>
+				</px-dropdown>
+	        </div>
+	    </div>
+	    </div>
+    <br><br>
+    	<div class="pull-left" style="width: 100%;clear: both;margin-top: 15px;">
+     		<paper-button onclick="loadInspection();" raised class="custom-btn-s1">Ok</paper-button><paper-button raised class="custom-btn-s1" >Cancel</paper-button>
+     	</div>
+ </px-card>
+     
+ 
+ <px-card id="Create" class="clickme" style=" display: inline-block;width: 100%;padding-bottom: 8px;margin-bottom: 0px;"><paper-button id="AddInspBtn" raised>Add Inspection</paper-button>
+     <div id="msgArea" class="successmessage" style="float: right;margin-right: 371px;margin-top: 21px;color: #005cb9;font-weight: 700;">Data Submitted Successfully</div>
+<div id="errArea" class="successmessage" style="float: right;margin-right: 371px;margin-top: 21px;color: red;font-weight: 700;">Failed to Submit Data</div>
+</px-card>
+
+ <img src="../images/spinner.gif" class="gif-spinner" >
+  <px-card id="Inspect_table" sytle="height:90%;">
+
+			 <px-data-table id="resultTable1" selected-rows="{{mySelectedRows}}" filterable selectable striped table-data="{{alarm1}}">
+              <px-data-table-column 
+              name="location"
+              label="Location"
+              filterable
+              sortable
+              searchable
+              required
+              default=""
+              filter-function-name="myTableCustomFunctions.filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              <px-data-table-column 
+              name="area"
+              label="Area"
+              sortable
+              filterable
+              searchable
+              required
+              default=""
+              filter-function-name="filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              
+              <px-data-table-column 
+              name="condition"
+              label="Condition"
+              sortable
+              filterable
+              searchable
+              required
+              default=""
+              filter-function-name="myTableCustomFunctions.filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              <px-data-table-column 
+              name="uom"
+              label="UOM"
+              sortable
+              searchable
+              filterable
+              required
+			  default=""
+              filter-function-name="myTableCustomFunctions.filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              <px-data-table-column 
+              name="value"
+              label="Value"
+              sortable
+              searchable
+              filterable
+              editable
+              default=""
+              filter-function-name="myTableCustomFunctions.filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              <px-data-table-column 
+              name="disposition"
+              label="Disposition"
+              sortable
+              searchable
+              filterable
+              default=""
+              filter-function-name="myTableCustomFunctions.filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              
+                                                                                                                                            
+              </px-data-table>
+             
+			</px-card> 
+</form>
+ </template>
+</dom-module>
+
+<script>
+Polymer({
+    is: 'px-card-item',
+    behaviors: [px.card],
+	ready: function(){
+			 this.historicalDataService();
+	},
+
+	historicalDataService: function() {
+		var queryString = window.location.search.substring(1);
+	    var varArray = queryString.split("=");
+	    var param2 = varArray[1];
+		var resp = this;
+		var serviceUrl = "http://webcrt-poc.run.aws-usw02-pr.ice.predix.io/view/"+param2;
+		
+			this.getData(serviceUrl).then(function(data) {
+				resp.alarm1 = data.inspectionTable;	
+				resp.json2 = data.itemList;
+				resp.json3 = data.subComponentList;
+				resp.location = data.locationList;
+				resp.area = data.areaList;
+				resp.condition = data.conditionList;
+				this.storeJson(data,param2);
+				this.loaderHide();
+		});	
+	}
+	 
+	});
+	
+
+function readTextFile(file, callback) {
+	    var rawFile = new XMLHttpRequest();
+	    rawFile.overrideMimeType("application/json");
+	    rawFile.open("GET", file, true);
+	    rawFile.onreadystatechange = function() {
+	        if (rawFile.readyState === 4 && rawFile.status == "200") {
+	            callback(rawFile.responseText);
+	        }
+	    }
+	    rawFile.send(null);
+	};
+	
+	function storeJson(obj,param){
+		document.getElementById("data").value = encodeURIComponent(JSON.stringify(obj));
+		document.getElementById("param").value = param;
+	}
+	
+	function loaderHide(){
+		$('.gif-spinner').hide();
+}
+	
+	function loadInspection(){
+		var e = document.getElementById("itemSelect");
+		var selectedItem = e.options[e.selectedIndex].text;
+		
+		var e = document.getElementById("itemSelect2");
+		var selectedSubComp = e.options[e.selectedIndex].text;
+		
+  	   	var tableDtl = document.querySelector('px-card-item');
+  	  	var resp = tableDtl;
+    	/* var serviceUrl = "http://webcrt-poc.run.aws-usw02-pr.ice.predix.io/getInspByItemSubCmp/"+param2+"/"+selectedItem"; */
+    	tableDtl.getData(serviceUrl).then(function(data) {
+    			resp.alarm1 = data.inspectionTable;	
+	            }); 
+	}
+
+</script>
+
+

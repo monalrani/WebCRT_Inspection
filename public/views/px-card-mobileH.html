@@ -1,0 +1,176 @@
+
+<link rel="import" href="../bower_components/px-card/px-card-header.html"/>
+<link rel="import" href="../bower_components/px-card/px-card.html"/>
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html"/>
+
+
+  <style >
+  #table1{
+    width: 930px;
+    height: 276px;
+  }
+
+h3 {width:500px;}
+
+#main {margin:20px;}
+  
+  </style>
+  
+
+<dom-module id="px-card-mobileH">
+
+    <link rel="import" type="css" href="css/px-card.css"/>
+    <template>
+    <div class="customscroll-s1 width-s1">
+      <img src="../images/spinner.gif" class="gif-spinner" >
+    <px-card sytle="height:90%">
+      <div id="adshowblock"></div>
+    
+			 <px-data-table id="resultTable1" selected-rows="{{mySelectedRows}}" filterable  striped table-data="{{alarm}}">
+              <px-data-table-column 
+              name="jobNum"
+              label="Job Number"
+              type="html"
+              filterable
+              sortable
+              searchable
+              required
+              default=""
+              filter-function-name="myTableCustomFunctions.filterMarkupVal"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              <px-data-table-column name="shopName"
+              label="Shop Name"
+              sortable
+              filterable
+              searchable
+              required
+              default=""
+              filter-function-name="filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              
+              <px-data-table-column name="component"
+              
+              label="Component"
+              sortable
+              filterable
+              searchable
+              required
+              default=""
+              filter-function-name="myTableCustomFunctions.filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              <px-data-table-column name="serialNum"
+              
+              label="Serial Number"
+              sortable
+              searchable
+              filterable
+              required
+			  default=""
+              filter-function-name="myTableCustomFunctions.filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              <px-data-table-column name="frame"
+              
+              label="Frame"
+              sortable
+              searchable
+              filterable
+              required
+              default=""
+              filter-function-name="myTableCustomFunctions.filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+              <px-data-table-column name="combustion"
+              label="Combustion"
+              sortable
+              searchable
+              filterable
+              required
+              default=""
+              filter-function-name="myTableCustomFunctions.filterWholeWord"
+              sort-function-name="sortColumn">
+              </px-data-table-column>
+                                                                                                                                            
+              </px-data-table>
+             
+			</px-card> 
+			</div>
+			</template>
+</dom-module>
+
+ <script>
+ window.myTableCustomFunctions = {
+         sortByEmailDomain: function(a, b) {
+           var aDomain = a.value.substring(a.value.indexOf("@")+1, a.value.indexOf("."));
+           var bDomain = b.value.substring(b.value.indexOf("@")+1, b.value.indexOf("."));
+           return this.descending
+             ? (aDomain < bDomain ? 1 : -1)
+             : (aDomain > bDomain ? 1 : -1);
+         },
+         filterMarkupVal: function(searchString, cellValue) {
+           var lhs = cellValue.slice(cellValue.indexOf('>') + 1);
+           var content = lhs.substr(0, lhs.indexOf('<'));
+
+           return (content.toString().toLowerCase().indexOf(searchString.toString().toLowerCase()) > -1);
+         },
+         filterWholeWord: function(searchString, cellValue) {
+           if(searchString === undefined || searchString === null || searchString === "") {
+             return true;
+           }
+           return (searchString.toString().toLowerCase() === cellValue.toString().toLowerCase());
+         }
+       };
+
+       function logSelectedRows() {
+         var selectedRows = document.getElementById("mytable").selectedRows;
+       }
+
+       document.addEventListener('WebComponentsReady', function() {
+
+         document.getElementById("mytable").addEventListener("px-row-click", function(e) {
+           var clickedRow = e.detail.row;
+         });
+
+       });
+       
+Polymer({
+    is: 'px-card-mobileH',
+    behaviors: [px.card],
+	ready: function(){
+			this.historicalDataService();
+	},
+
+	historicalDataService: function() {
+			
+		var resp = this;
+		
+		//consumed jobDetail micoservice end point to fetch data from postgres db in predix cloud
+		var serviceUrl = "http://webcrt-poc.run.aws-usw02-pr.ice.predix.io/jobDetails";
+
+		
+			this.getData(serviceUrl).then(function(data) {
+				 for (var i = 0, length = data.length; i < length; i++) {
+					 data[i].jobNum = '<a href="inspection?jobNum='+data[i].jobSeqId+ '">' + data[i].jobNum + '</a>';
+	 				}
+				 //bind value to px-data-table
+					resp.alarm = data;
+					loaderHide();
+
+		});	
+	}
+
+	 
+	});
+	function test(){
+		var col1 = document.getElementsByClassName('style-scope px-data-table-cell');
+	}
+
+	function loaderHide(){
+			$('.gif-spinner').hide();
+	}
+	
+</script>
+
